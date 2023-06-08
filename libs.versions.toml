@@ -11,6 +11,7 @@ moshi = "1.14.0"
 retrofit2 = "2.9.0"
 okhttp = "4.9.0"
 ultimateBarX = "0.8.0"
+kotlin-ksp="1.8.0-1.0.9"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "kotlin" }
@@ -44,6 +45,7 @@ moshi = ["moshi", "moshi-kotlin"]
 
 [plugins]
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kotlin-android-plugins = { id = "com.google.dagger.hilt.android", version.ref = "kotlin" }
+kotlin-android-plugins = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
