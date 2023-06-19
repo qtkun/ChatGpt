@@ -158,11 +158,12 @@
 -keep class com.qtkun.chatgpt.net.data.* {*;}
 -keep class **.*bean*.** {*;}
 -keep,allowobfuscation,allowshrinking class com.qtkun.chatgpt.base.AdapterProxy
--keepclassmembers public class * extends androidx.viewbinding.ViewBinding {
-    public static * inflate(android.view.LayoutInflater);
-    public static * inflate(android.view.LayoutInflater,android.view.ViewGroup,boolean);
-    public static * inflate(android.view.LayoutInflater,android.view.ViewGroup,java.lang.Boolean);
-    public static * bind(android.view.View);
+-keep,allowobfuscation,allowshrinking class * implements com.qtkun.chatgpt.base.AdapterProxy
+-keep class * implements androidx.viewbinding.ViewBinding {*;}
+
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+    public static ** bind(***);
+    public static ** inflate(...);
 }
 -keepclassmembers public class * extends androidx.lifecycle.ViewModelProvider {
     public ** get(java.lang.Class);
