@@ -32,12 +32,11 @@ object NetworkModule {
             .writeTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(getRequestHeader())
-            .addInterceptor(commonInterceptor())
+//            .addInterceptor(commonInterceptor())
             .addInterceptor(getHttpLoggingInterceptor())
-            .addInterceptor(getCacheInterceptor())
-            .addNetworkInterceptor(getCacheInterceptor())
-            .cache(getCache(context))
-            .cookieJar(cookieJar)
+//            .addNetworkInterceptor(getCacheInterceptor())
+//            .cache(getCache(context))
+//            .cookieJar(cookieJar)
             .build()
     }
 

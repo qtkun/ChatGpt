@@ -7,6 +7,7 @@ import com.qtkun.chatgpt.ext.createBody
 import com.qtkun.chatgpt.net.ApiResult
 import com.qtkun.chatgpt.service.ChatGPTService
 import com.squareup.moshi.Moshi
+import okhttp3.ResponseBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -38,5 +39,32 @@ class ChatGPTApi @Inject constructor(private val service: ChatGPTService){
             "messages" to messages
         )
         return service.sendMessageToChatGPT(moshi.createBody(params))
+    }
+
+    suspend fun sendMessageToChatGPTStream(messageList: List<Any>): ResponseBody {
+        val messages = mutableListOf<Map<String, Any>>()
+        for (data in messageList) {
+            when(data) {
+                is ChatMessageBean -> {
+                    messages.add(mapOf(
+                        "role" to data.role,
+                        "content" to data.content
+                    ))
+                }
+                is UserMessageBean -> {
+                    messages.add(mapOf(
+                        "role" to data.role,
+                        "content" to data.content
+                    ))
+                }
+            }
+        }
+        val params = mapOf(
+            "model" to "gpt-3.5-turbo",
+            "messages" to messages,
+            "stream" to true,
+            "temperature" to 0
+        )
+        return service.sendMessageToChatGPTStream(moshi.createBody(params))
     }
 }

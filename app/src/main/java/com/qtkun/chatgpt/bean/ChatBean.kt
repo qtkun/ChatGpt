@@ -33,3 +33,11 @@ data class Delta(
     val content: String?,
     val role: String?
 )
+
+data class StreamChatBean(
+    val choices: List<Choice>?,
+    val created: Int,
+    val id: String,
+    val model: String,
+    val `object`: String?
+)

@@ -64,10 +64,15 @@ class MultiAdapter(
         position: Int,
         payloads: MutableList<Any>
     ) {
-        getItemViewType(position).let { viewType ->
-            if (viewType != TYPE_EMPTY && viewType != TYPE_UNKNOWN) {
-                (proxies[getItemViewType(position)] as AdapterProxy<Any, ViewBinding>).onBindViewHolder(
-                    holder as BaseViewHolder<ViewBinding>, items[position], position, payloads)
+        if (payloads.isEmpty()) {
+            onBindViewHolder(holder, position)
+        } else {
+            getItemViewType(position).let { viewType ->
+                if (viewType != TYPE_EMPTY && viewType != TYPE_UNKNOWN) {
+                    (proxies[getItemViewType(position)] as AdapterProxy<Any, ViewBinding>).onBindViewHolder(
+                        holder as BaseViewHolder<ViewBinding>, items[position], position, payloads
+                    )
+                }
             }
         }
     }
@@ -98,6 +103,11 @@ class MultiAdapter(
         items.clear()
         items.addAll(data)
         notifyItemRangeChanged(0, data.size)
+    }
+
+    fun setData(position: Int, data: Any) {
+        items[position] = data
+        notifyItemChanged(position)
     }
 
     fun addData(data: List<Any>) {

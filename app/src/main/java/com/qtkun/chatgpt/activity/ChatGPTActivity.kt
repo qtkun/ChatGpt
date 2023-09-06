@@ -102,9 +102,21 @@ class ChatGPTActivity: BaseActivity<ActivityChatBinding, ChatGPTViewModel>() {
                     adapter.addData(it!!)
                     linearLayoutManager.scrollToPositionWithOffset(adapter.lastIndex, 0)
                     if (it is UserMessageBean) {
-                        viewModel.sendMessageToChatGPT(adapter.data)
+//                        viewModel.sendMessageToChatGPT(adapter.data)
+                        viewModel.sendMessageToChatGPTStream(adapter.data)
                     }
                     message.value = null
+                }
+        }
+        lifecycleScope.launch {
+            streamMessage.filter { it != null }
+                .collect {
+                    if (it!!.content.isEmpty()) {
+                        adapter.addData(it)
+                        linearLayoutManager.scrollToPositionWithOffset(adapter.lastIndex, 0)
+                    } else {
+                        adapter.setData(adapter.lastIndex, it)
+                    }
                 }
         }
         lifecycleScope.launch {

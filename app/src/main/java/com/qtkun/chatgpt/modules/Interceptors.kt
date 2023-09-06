@@ -10,6 +10,7 @@ import okhttp3.Interceptor.Companion.invoke
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
 import java.io.File
+import java.lang.Exception
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 
@@ -76,19 +77,26 @@ fun commonInterceptor(): Interceptor {
             contentType?.charset(StandardCharsets.UTF_8) ?: StandardCharsets.UTF_8
         val resultString = buffer.clone().readString(charset)
 
-
-        val jsonObject = JSONObject(resultString)
-        if (jsonObject.has("code")) {
+        if (contentType?.subtype?.contains("stream") == true) {
             return@invoke response
         }
 
-        val errorCode = jsonObject.optInt("code")
-        val errorMsg = jsonObject.optString("msg")
-        //对于业务成功的情况不做处理
-        if (errorCode == 0) {
-            return@invoke response
+        try {
+            val jsonObject = JSONObject(resultString)
+            if (!jsonObject.has("code")) {
+                return@invoke response
+            }
+
+            val errorCode = jsonObject.optInt("code")
+            val errorMsg = jsonObject.optString("msg")
+            //对于业务成功的情况不做处理
+            if (errorCode == 0) {
+                return@invoke response
+            }
+            throw ApiException(errorCode, errorMsg, request.url.toUri().toString())
+        } catch (e: Exception) {
+            response
         }
-        throw ApiException(errorCode, errorMsg, request.url.toUri().toString())
     }
 }
 

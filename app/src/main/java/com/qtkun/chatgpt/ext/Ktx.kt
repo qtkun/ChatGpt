@@ -13,9 +13,16 @@ inline fun <reified K, reified V> Moshi.buildMapJsonAdapter(): JsonAdapter<Map<K
     return this.adapter(type)
 }
 
+inline fun <reified T> Moshi.buildJsonAdapter(): JsonAdapter<T> = this.adapter(T::class.java)
+
 inline fun <reified K, reified V> Moshi.toJsonMap(t: Map<K, V>): String {
     val jsonAdapter: JsonAdapter<Map<K, V>> = buildMapJsonAdapter()
     return jsonAdapter.toJson(t)
+}
+
+inline fun <reified T> Moshi.fromJson(json: String): T? {
+    val jsonAdapter: JsonAdapter<T> = buildJsonAdapter()
+    return jsonAdapter.fromJson(json)
 }
 
 fun Moshi.createBody(map: Map<String, Any>): RequestBody {

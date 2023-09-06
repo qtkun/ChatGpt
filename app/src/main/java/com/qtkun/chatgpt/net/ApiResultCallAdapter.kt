@@ -112,7 +112,7 @@ class ApiResultCallAdapterFactory : CallAdapter.Factory() {
         returnType: Type,
         annotations: Array<Annotation>,
         retrofit: Retrofit
-    ): CallAdapter<*, *> {
+    ): CallAdapter<*, *>? {
         /*凡是检测不通过的，直接抛异常，提示使用者返回值类型格式不对
         因为ApiResultCallAdapterFactory是使用者显式设置使用的*/
 
@@ -125,7 +125,7 @@ class ApiResultCallAdapterFactory : CallAdapter.Factory() {
 
         //取出Call<T> 里的T，检查是否是ApiResult<T>
         val apiResultType = getParameterUpperBound(0, returnType)
-        check(getRawType(apiResultType) == ApiResult::class.java) { "$apiResultType must be ApiResult." }
+        if (getRawType(apiResultType) != ApiResult::class.java) { return null }
         check(apiResultType is ParameterizedType) { "$apiResultType must be parameterized. Raw types are not supported" }
 
         //取出ApiResult<T>中的T 也就是API返回数据对应的数据类型

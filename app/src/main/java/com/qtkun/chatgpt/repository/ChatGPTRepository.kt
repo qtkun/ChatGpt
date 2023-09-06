@@ -20,6 +20,8 @@ class ChatGPTRepository@Inject constructor(
         emit(gptApi.sendMessageToChatGPT(messageList))
     }.flowOn(Dispatchers.IO)
 
+    suspend fun sendMessageToChatGPTStream(messageList: List<Any>) = gptApi.sendMessageToChatGPTStream(messageList)
+
     fun getMessageFromRoom() = flow {
         emit(chatGPTDao.getChatMessageList())
     }.flowOn(Dispatchers.IO)

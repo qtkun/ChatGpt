@@ -24,6 +24,20 @@ class ChatGPTAdapterProxy(private val onMessageDelete: (Int) -> Unit): AdapterPr
         }
     }
 
+    override fun onBindViewHolder(
+        holder: BaseViewHolder<ItemChatgptMessageBinding>,
+        item: ChatMessageBean,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        for (payload in payloads) {
+            if (payload is String) {
+                item.content = payload
+                holder.binding.tvContent.text = item.content
+            }
+        }
+    }
+
     override fun areItemsTheSame(oldItem: ChatMessageBean, newItem: ChatMessageBean): Boolean {
         return oldItem.id == newItem.id
     }
