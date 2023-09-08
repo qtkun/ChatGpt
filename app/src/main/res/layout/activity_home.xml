@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F7F7F7">
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_car"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_water"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        android:background="@drawable/shape_button_bg"
+        android:drawableStart="@drawable/ic_water"
+        android:drawablePadding="4dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_main"
+        android:text="水深、障碍物检测"
+        android:elevation="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_track"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_water"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        android:background="@drawable/shape_button_bg"
+        android:drawableStart="@drawable/ic_track"
+        android:drawablePadding="4dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_main"
+        android:text="洪涝轨迹预测"
+        android:elevation="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_safe"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_track"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        android:background="@drawable/shape_button_bg"
+        android:drawableStart="@drawable/ic_safe"
+        android:drawablePadding="4dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_main"
+        android:text="车辆安全评分"
+        android:elevation="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qtkun.chatgpt.widget.TriangleContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:trv_color="#B3000000"
+    app:trv_direction="top"
+    app:trv_shadow_width="5dp"
+    android:id="@+id/tc">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/q1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="洪水在即，下车还是开车避险？"/>
+
+        <TextView
+            android:id="@+id/q2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="遇到洪水如何紧急避险？"/>
+
+        <TextView
+            android:id="@+id/q3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="车辆涉水过深如何正确处理？"/>
+
+    </LinearLayout>
+
+</com.qtkun.chatgpt.widget.TriangleContainer>

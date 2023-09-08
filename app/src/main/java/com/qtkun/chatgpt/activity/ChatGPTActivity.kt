@@ -102,8 +102,8 @@ class ChatGPTActivity: BaseActivity<ActivityChatBinding, ChatGPTViewModel>() {
                     adapter.addData(it!!)
                     linearLayoutManager.scrollToPositionWithOffset(adapter.lastIndex, 0)
                     if (it is UserMessageBean) {
-//                        viewModel.sendMessageToChatGPT(adapter.data)
-                        viewModel.sendMessageToChatGPTStream(adapter.data)
+                        viewModel.sendMessageToChatGPT(adapter.data)
+//                        viewModel.sendMessageToChatGPTStream(adapter.data)
                     }
                     message.value = null
                 }
